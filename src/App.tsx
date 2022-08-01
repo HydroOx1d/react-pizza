@@ -1,11 +1,22 @@
-import React from 'react';
 import styled from 'styled-components';
-import './App.css';
+import Header from './components/header/Header';
 
-
+const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 1340px;
+  min-height: 100%;
+  overflow-x: hidden;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+`
 function App() {
   return (
-    <div>Hello Pizza!</div>
+    <Wrapper>
+      <Header/>
+    </Wrapper>
   );
 }
 
