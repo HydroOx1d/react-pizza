@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Header from './components/header/Header';
+import Navigation from './components/filter/Filter';
 
 const Wrapper = styled.div`
   position: relative;
@@ -16,6 +17,7 @@ function App() {
   return (
     <Wrapper>
       <Header/>
+      <Navigation/>
     </Wrapper>
   );
 }
