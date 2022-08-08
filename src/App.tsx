@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Header from './components/header/Header';
 import Navigation from './components/filter/Filter';
+import PizzaList from "./components/PizzaList/PizzaList";
 
 const Wrapper = styled.div`
   position: relative;
@@ -18,6 +19,7 @@ function App() {
     <Wrapper>
       <Header/>
       <Navigation/>
+      <PizzaList/>
     </Wrapper>
   );
 }
