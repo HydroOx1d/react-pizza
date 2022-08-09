@@ -8,13 +8,12 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
   }
-  html, body {
+  body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-  }
-  body {
+
     font-family: "Roboto Flex", sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -22,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #FFDF8C;
     padding: 43px 0;
   }
+
   #root {
     width: 100%;
     height: 100%;
