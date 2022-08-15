@@ -2,7 +2,6 @@ import React from "react";
 import { Container } from "../uikit/index";
 import styled from "styled-components";
 import PizzaItem from "./PizzaItem/PizzaItem";
-import pizzas from "../../db.json";
 
 const PizzaListSC = styled.div``;
 const PizzaListTitle = styled.h2`
@@ -19,6 +18,21 @@ const PizzaListGrid = styled.div`
 `;
 
 const PizzaList = () => {
+  const [pizzas, setPizzas] = React.useState<Array<{
+    id: number
+    imageUrl: string
+    title: string
+    types: number[]
+    sizes: number[]
+    price: number
+    category: number
+    rating: number
+  }>>([])
+
+  React.useEffect(() => {
+    fetch('https://62f9d53b3c4f110faa8d7bce.mockapi.io/pizzas/pizzas').then(res => res.json()).then(pizzas => setPizzas(pizzas))
+  }, [])
+
   return (
     <>
       <PizzaListSC>
