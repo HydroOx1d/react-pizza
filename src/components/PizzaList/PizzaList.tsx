@@ -49,11 +49,9 @@ const PizzaList = () => {
         <PizzaListTitle>Все пиццы</PizzaListTitle>
         <PizzaListGrid>
           {
-            pizzasIsLoading ? (
-              <PizzaSkeleton />
-            ) : pizzas.map((pizza) => (
-              <PizzaItem key={pizza.id} {...pizza} />
-            ))
+            pizzasIsLoading
+              ? [...new Array(4)].map((_, index) => <PizzaSkeleton key={index} />)
+              : pizzas.map((pizza) => <PizzaItem key={pizza.id} {...pizza} />)
           }
         </PizzaListGrid>
       </Container>

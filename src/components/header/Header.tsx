@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import { Container, Flex } from '../uikit';
-import Logo from '../../assets/header/logo.png'
-import Basket from '../../assets/header/basket.svg'
+import Logo from '../../assets/header/logo.png';
+import Basket from '../../assets/header/basket.svg';
 
 const HeaderSC = styled.header`
   padding: 50px 0px 50px 0px;
@@ -71,22 +73,26 @@ const Header = () => {
     <HeaderSC>
       <Container>
         <Flex align="center" justify='space-between'>
-          <HeaderLogoSC align="center">
-            <HeaderLogoImage src={Logo} alt="logo" />
-            <HeaderLogoContent>
-              <HeaderLogoTitle>REACT PIZZA</HeaderLogoTitle>
-              <HeaderLogoSubtitle>
-                самая вкусная пицца во вселенной
-              </HeaderLogoSubtitle>
-            </HeaderLogoContent>
-          </HeaderLogoSC>
-          <HeaderBasket align='center'>
-            <HeaderBasketSum>520 ₽</HeaderBasketSum>
-            <HeaderBasketCount align='center'>
-              <HeaderBasketIcon src={Basket} />
-              <HeaderBasketNum>3</HeaderBasketNum>
-            </HeaderBasketCount>
-          </HeaderBasket>
+          <Link to="/">
+            <HeaderLogoSC align="center">
+              <HeaderLogoImage src={Logo} alt="logo" />
+              <HeaderLogoContent>
+                <HeaderLogoTitle>REACT PIZZA</HeaderLogoTitle>
+                <HeaderLogoSubtitle>
+                  самая вкусная пицца во вселенной
+                </HeaderLogoSubtitle>
+              </HeaderLogoContent>
+            </HeaderLogoSC>
+          </Link>
+          <Link to="/cart">
+            <HeaderBasket align='center'>
+              <HeaderBasketSum>520 ₽</HeaderBasketSum>
+              <HeaderBasketCount align='center'>
+                <HeaderBasketIcon src={Basket} />
+                <HeaderBasketNum>3</HeaderBasketNum>
+              </HeaderBasketCount>
+            </HeaderBasket>
+          </Link>
         </Flex>
       </Container>
     </HeaderSC>

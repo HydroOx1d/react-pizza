@@ -24,11 +24,12 @@ const Main = styled.main`
 function App() {
   return (
     <Wrapper>
-      <Header/>
+      <Header />
       <Main>
         <Routes>
-          <Route path='/' element={ <Home/> }/>
-          <Route path='*' element={<h1>404 Not Found</h1>}/>
+          <Route path='/' element={<Home />} />
+          <Route path='cart' element={<h1>Корзина</h1>} />
+          <Route path='*' element={<h1>404 Not Found</h1>} />
         </Routes>
       </Main>
     </Wrapper>
