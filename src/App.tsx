@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import Header from './components/header/Header';
-import Navigation from './components/filter/Filter';
-import PizzaList from "./components/PizzaList/PizzaList";
-
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -14,13 +13,24 @@ const Wrapper = styled.div`
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.03);
   border-radius: 10px;
   padding: 0px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
 `
+
+const Main = styled.main`
+  flex: 1 1 auto;
+`
+
 function App() {
   return (
     <Wrapper>
       <Header/>
-      <Navigation/>
-      <PizzaList/>
+      <Main>
+        <Routes>
+          <Route path='/' element={ <Home/> }/>
+          <Route path='*' element={<h1>404 Not Found</h1>}/>
+        </Routes>
+      </Main>
     </Wrapper>
   );
 }

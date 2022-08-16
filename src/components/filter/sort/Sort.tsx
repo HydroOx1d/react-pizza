@@ -112,7 +112,7 @@ const Sort = () => {
         <SortTypeDropdown ref={dropdownRef} active={activeDropdown}>
           <SortTypeDropdownList>
             {sortTypes.map((type, index) => (
-              <SortTypeDropdownItem onClick={() => setCurrentType(index)}>
+              <SortTypeDropdownItem key={index} onClick={() => setCurrentType(index)}>
                 {type}
               </SortTypeDropdownItem>
             ))}

@@ -5,7 +5,7 @@ import { Flex } from "../uikit/index";
 import Categories from "./categories/Categories";
 import Sort from "./sort/Sort";
 
-const FilterWrap = styled.div``;
+const FilterWrap = styled.section``;
 
 const Filter = () => {
   return (

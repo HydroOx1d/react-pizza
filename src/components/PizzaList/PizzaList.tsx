@@ -2,8 +2,10 @@ import React from "react";
 import { Container } from "../uikit/index";
 import styled from "styled-components";
 import PizzaItem from "./PizzaItem/PizzaItem";
+import PizzaSkeleton from "../pizaa-skeletor/PizzaSkeleton";
 
-const PizzaListSC = styled.div``;
+const PizzaListSC = styled.section``;
+
 const PizzaListTitle = styled.h2`
   font-weight: 700;
   font-size: 32px;
@@ -17,35 +19,45 @@ const PizzaListGrid = styled.div`
   column-gap: 55px;
 `;
 
+interface PizzasType {
+  id: number
+  imageUrl: string
+  title: string
+  types: number[]
+  sizes: number[]
+  price: number
+  category: number
+  rating: number
+}
+
 const PizzaList = () => {
-  const [pizzas, setPizzas] = React.useState<Array<{
-    id: number
-    imageUrl: string
-    title: string
-    types: number[]
-    sizes: number[]
-    price: number
-    category: number
-    rating: number
-  }>>([])
+  const [pizzas, setPizzas] = React.useState<PizzasType[]>([]);
+  const [pizzasIsLoading, setPizzasIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    fetch('https://62f9d53b3c4f110faa8d7bce.mockapi.io/pizzas/pizzas').then(res => res.json()).then(pizzas => setPizzas(pizzas))
+    fetch('https://62f9d53b3c4f110faa8d7bce.mockapi.io/pizzas/pizzas')
+      .then(res => res.json())
+      .then(pizzas => {
+        setPizzas(pizzas);
+        setPizzasIsLoading(false);
+      })
   }, [])
 
   return (
-    <>
-      <PizzaListSC>
-        <Container>
-          <PizzaListTitle>Все пиццы</PizzaListTitle>
-          <PizzaListGrid>
-            {pizzas.map((pizza) => (
+    <PizzaListSC>
+      <Container>
+        <PizzaListTitle>Все пиццы</PizzaListTitle>
+        <PizzaListGrid>
+          {
+            pizzasIsLoading ? (
+              <PizzaSkeleton />
+            ) : pizzas.map((pizza) => (
               <PizzaItem key={pizza.id} {...pizza} />
-            ))}
-          </PizzaListGrid>
-        </Container>
-      </PizzaListSC>
-    </>
+            ))
+          }
+        </PizzaListGrid>
+      </Container>
+    </PizzaListSC>
   );
 };
 
