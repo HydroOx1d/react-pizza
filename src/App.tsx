@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Header from './components/header/Header';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import Cart from './pages/Cart';
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -28,7 +29,7 @@ function App() {
       <Main>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='cart' element={<h1>Корзина</h1>} />
+          <Route path='cart' element={<Cart/>} />
           <Route path='*' element={<h1>404 Not Found</h1>} />
         </Routes>
       </Main>
