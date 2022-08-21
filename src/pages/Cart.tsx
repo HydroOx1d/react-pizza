@@ -5,6 +5,7 @@ import { Container } from '../components/uikit/index';
 import { ReactComponent as Basket } from '../assets/cart/basket.svg';
 import { ReactComponent as CartIcon } from '../assets/cart/cart.svg';
 import CartItem from '../components/cart/CartItem';
+import Empty from '../components/cart/Empty';
 
 const CartWrap = styled.div``
 
@@ -104,34 +105,38 @@ const Button = styled.button`
 
 function Cart() {
   return (
-    <CartWrap>
-      <Container maxWwidth='821'>
-        <CartHeader>
-          <CartName>
-            <Basket/>
-            <CartNameText>Корзина</CartNameText>
-          </CartName>
+    <>
+      {/* <CartWrap>
+        <Container maxWwidth='821'>
+          <CartHeader>
+            <CartName>
+              <Basket/>
+              <CartNameText>Корзина</CartNameText>
+            </CartName>
+  
+            <Clear>
+              <CartIcon/>
+              <ClearName>Очистить корзину</ClearName>
+            </Clear>
+          </CartHeader>
+          <CartBody>
+            <CartItem />
+          </CartBody>
+          <CartBottom>
+            <Total>
+              <TotalPizzas>Всего пицц: <span>3 шт.</span></TotalPizzas>
+              <TotalSum>Сумма заказа: <span>999 Р</span></TotalSum>
+            </Total>
+            <Buttons>
+              <Button className='outline'>Вернуться назад</Button>
+              <Button>Оплатить сейчас</Button>
+            </Buttons>
+          </CartBottom>
+        </Container>
+      </CartWrap> */}
 
-          <Clear>
-            <CartIcon/>
-            <ClearName>Очистить корзину</ClearName>
-          </Clear>
-        </CartHeader>
-        <CartBody>
-          <CartItem />
-        </CartBody>
-        <CartBottom>
-          <Total>
-            <TotalPizzas>Всего пицц: <span>3 шт.</span></TotalPizzas>
-            <TotalSum>Сумма заказа: <span>999 Р</span></TotalSum>
-          </Total>
-          <Buttons>
-            <Button className='outline'>Вернуться назад</Button>
-            <Button>Оплатить сейчас</Button>
-          </Buttons>
-        </CartBottom>
-      </Container>
-    </CartWrap>
+      <Empty/>
+    </>
   );
 }
 
