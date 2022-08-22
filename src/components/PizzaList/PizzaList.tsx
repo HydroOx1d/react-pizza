@@ -1,8 +1,12 @@
 import React from "react";
-import { Container } from "../uikit/index";
 import styled from "styled-components";
+import { useDispatch, useSelector} from 'react-redux';
+
+import { Container } from "../uikit/index";
 import PizzaItem from "./PizzaItem/PizzaItem";
 import PizzaSkeleton from "../pizaa-skeletor/PizzaSkeleton";
+import { getPizzas } from "../../store/slices/pizzas";
+import { AppDispatchType, AppStateType } from '../../store/index';
 
 const PizzaListSC = styled.section``;
 
@@ -19,28 +23,14 @@ const PizzaListGrid = styled.div`
   column-gap: 55px;
 `;
 
-interface PizzasType {
-  id: number
-  imageUrl: string
-  title: string
-  types: number[]
-  sizes: number[]
-  price: number
-  category: number
-  rating: number
-}
-
 const PizzaList = () => {
-  const [pizzas, setPizzas] = React.useState<PizzasType[]>([]);
-  const [pizzasIsLoading, setPizzasIsLoading] = React.useState(true);
+  const pizzas = useSelector((state: AppStateType) => state.pizzas.pizzas);
+  const pizzasIsLoading = useSelector((state: AppStateType) => state.pizzas.pizzasIsLoading);
+
+  const dispatch = useDispatch<AppDispatchType>();
 
   React.useEffect(() => {
-    fetch('https://62f9d53b3c4f110faa8d7bce.mockapi.io/pizzas/pizzas')
-      .then(res => res.json())
-      .then(pizzas => {
-        setPizzas(pizzas);
-        setPizzasIsLoading(false);
-      })
+    dispatch(getPizzas())
   }, [])
 
   return (
@@ -51,7 +41,7 @@ const PizzaList = () => {
           {
             pizzasIsLoading
               ? [...new Array(4)].map((_, index) => <PizzaSkeleton key={index} />)
-              : pizzas.map((pizza) => <PizzaItem key={pizza.id} {...pizza} />)
+              : pizzas?.map((pizza) => <PizzaItem key={pizza.id} {...pizza} />)
           }
         </PizzaListGrid>
       </Container>
