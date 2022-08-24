@@ -1,9 +1,12 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { PizzasType } from "../../types";
 import { pizzasRequests } from "../../api";
+import { IGetPizzasQueryParams } from '../../types/index';
 
-export const getPizzas = createAsyncThunk('pizzas/getPizzas', async (_, {dispatch}) => {
-  const pizzas = await pizzasRequests.getPizzas();
+export const getPizzas = createAsyncThunk('pizzas/getPizzas', async (queryParams: IGetPizzasQueryParams, {dispatch}) => {
+  const {sortBy, order} = queryParams;
+
+  const pizzas = await pizzasRequests.getPizzas(sortBy, order);
 
   dispatch(setPizzas(pizzas.data))
 })

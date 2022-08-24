@@ -8,3 +8,8 @@ export interface PizzasType {
   category: number
   rating: number
 }
+
+export interface IGetPizzasQueryParams {
+  sortBy: string | null
+  order: string | null
+}

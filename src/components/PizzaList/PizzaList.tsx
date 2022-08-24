@@ -7,6 +7,8 @@ import PizzaItem from "./PizzaItem/PizzaItem";
 import PizzaSkeleton from "../pizaa-skeletor/PizzaSkeleton";
 import { getPizzas } from "../../store/slices/pizzas";
 import { AppDispatchType, AppStateType } from '../../store/index';
+import { useSearchParams } from "react-router-dom";
+import { IGetPizzasQueryParams } from '../../types/index';
 
 const PizzaListSC = styled.section``;
 
@@ -24,14 +26,20 @@ const PizzaListGrid = styled.div`
 `;
 
 const PizzaList = () => {
+  const [searchParams] = useSearchParams();
   const pizzas = useSelector((state: AppStateType) => state.pizzas.pizzas);
   const pizzasIsLoading = useSelector((state: AppStateType) => state.pizzas.pizzasIsLoading);
 
   const dispatch = useDispatch<AppDispatchType>();
 
+  const getPizzasQueryParams: IGetPizzasQueryParams = {
+    sortBy: searchParams.get('sortBy'),
+    order: searchParams.get('order')
+  }
+
   React.useEffect(() => {
-    dispatch(getPizzas())
-  }, [])
+    dispatch(getPizzas(getPizzasQueryParams))
+  }, [getPizzasQueryParams.sortBy, getPizzasQueryParams.order])
 
   return (
     <PizzaListSC>

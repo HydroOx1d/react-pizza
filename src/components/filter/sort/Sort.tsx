@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import Arrow from "../../../assets/sort/arrow-top.svg";
 
@@ -75,10 +76,23 @@ const SortTypeDropdownItem = styled.li`
   }
 `;
 
+interface ISortTypes {
+  rating: string,
+  price: string,
+  title: string
+}
+
 const Sort = () => {
   const [activeDropdown, setActiveDropdown] = useState(false);
-  const [currentType, setCurrentType] = useState(0);
-  const sortTypes = ["популярности", "цене", "алфавиту"];
+  const [currentType, setCurrentType] = useState<string>('rating');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const sortTypes: ISortTypes  = {
+    rating: "популярности",
+    price: "цене",
+    title: 'алфавиту'
+  }
+
   const dropdownRef = useRef(null);
   const currentTypeRef = useRef(null);
 
@@ -98,6 +112,11 @@ const Sort = () => {
     };
   }, []);
 
+  const onSortType = (type: string) => {
+    setCurrentType(type)
+    setSearchParams({sortBy: type, order: type === 'title' ? 'asc' : 'desc'})
+  }
+
   return (
     <SortWrap>
       <SortIcon src={Arrow} />
@@ -107,15 +126,17 @@ const Sort = () => {
           onClick={() => setActiveDropdown(!activeDropdown)}
           ref={currentTypeRef}
         >
-          {sortTypes[currentType]}
+          {sortTypes[searchParams.get('sortBy') as keyof typeof sortTypes || currentType]}
         </SortCurrentType>
         <SortTypeDropdown ref={dropdownRef} active={activeDropdown}>
           <SortTypeDropdownList>
-            {sortTypes.map((type, index) => (
-              <SortTypeDropdownItem key={index} onClick={() => setCurrentType(index)}>
-                {type}
-              </SortTypeDropdownItem>
-            ))}
+            {Object.keys(sortTypes).map((type, index) => {
+              return (
+                <SortTypeDropdownItem key={index} onClick={() => onSortType(type)}>
+                  {sortTypes[type as keyof typeof sortTypes]}
+                </SortTypeDropdownItem>
+              )
+            })}
           </SortTypeDropdownList>
         </SortTypeDropdown>
       </SortType>
