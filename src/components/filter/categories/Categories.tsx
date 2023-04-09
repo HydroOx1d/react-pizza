@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -34,8 +34,8 @@ const Category = styled.li<FilterItemType>`
 `;
 
 const Categories = () => {
-  const [activeCategory, setActiveCategory] = React.useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [activeCategory, setActiveCategory] = React.useState(0);
   const categoriesList: string[] = [
     "Все",
     "Мясные",
@@ -45,25 +45,30 @@ const Categories = () => {
     "Закрытые",
   ];
 
-  useEffect(() => {
-    setSearchParams({ 
+
+  const onSetCategoryType = (index: number) => {
+    setActiveCategory(index);
+    setSearchParams({
       sortBy: searchParams.get('sortBy') || '',
       order: searchParams.get('order') || '',
-      category: String(activeCategory || '')
+      category: String(index || '')
     })
-  }, [activeCategory])
+  }
 
   return (
     <CategoriesWrap>
-      {categoriesList.map((category, index) => (
-        <Category
-          key={index}
-          active={activeCategory === index}
-          onClick={() => setActiveCategory(index)}
-        >
-          {category}
-        </Category>
-      ))}
+      {categoriesList.map((category, index) => {
+        const idx = searchParams.get('category') === null ? activeCategory : Number(searchParams.get('category'))
+        return (
+          <Category
+            key={index}
+            active={index === idx}
+            onClick={() => onSetCategoryType(index)}
+          >
+            {category}
+          </Category>
+        )
+      })}
     </CategoriesWrap>
   );
 };

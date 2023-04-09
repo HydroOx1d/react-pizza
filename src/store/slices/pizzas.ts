@@ -33,6 +33,9 @@ const pizzasSlice = createSlice({
     [getPizzas.fulfilled.type]: (state: InitialStateType) => {
       state.pizzasIsLoading = false
     }, 
+    [getPizzas.pending.type]: (state: InitialStateType) => {
+      state.pizzasIsLoading = true
+    }
   }
 })
 
