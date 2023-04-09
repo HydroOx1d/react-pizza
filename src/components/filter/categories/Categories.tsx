@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
 const CategoriesWrap = styled.ul`
@@ -34,6 +35,7 @@ const Category = styled.li<FilterItemType>`
 
 const Categories = () => {
   const [activeCategory, setActiveCategory] = React.useState(0);
+  const [searchParams, setSearchParams] = useSearchParams();
   const categoriesList: string[] = [
     "Все",
     "Мясные",
@@ -42,6 +44,14 @@ const Categories = () => {
     "Острые",
     "Закрытые",
   ];
+
+  useEffect(() => {
+    setSearchParams({ 
+      sortBy: searchParams.get('sortBy') || '',
+      order: searchParams.get('order') || '',
+      category: String(activeCategory || '')
+    })
+  }, [activeCategory])
 
   return (
     <CategoriesWrap>

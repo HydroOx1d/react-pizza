@@ -4,9 +4,9 @@ import { pizzasRequests } from "../../api";
 import { IGetPizzasQueryParams } from '../../types/index';
 
 export const getPizzas = createAsyncThunk('pizzas/getPizzas', async (queryParams: IGetPizzasQueryParams, {dispatch}) => {
-  const {sortBy, order} = queryParams;
+  const {sortBy, order, category} = queryParams;
 
-  const pizzas = await pizzasRequests.getPizzas(sortBy, order);
+  const pizzas = await pizzasRequests.getPizzas(sortBy, order, category);
 
   dispatch(setPizzas(pizzas.data))
 })

@@ -12,4 +12,5 @@ export interface PizzasType {
 export interface IGetPizzasQueryParams {
   sortBy: string | null
   order: string | null
+  category: string | null
 }

@@ -114,7 +114,11 @@ const Sort = () => {
 
   const onSortType = (type: string) => {
     setCurrentType(type)
-    setSearchParams({sortBy: type, order: type === 'title' ? 'asc' : 'desc'})
+    setSearchParams({
+      sortBy: type, 
+      order: type === 'title' ? 'asc' : 'desc',
+      category: searchParams.get('category') || ''
+    })
   }
 
   return (
