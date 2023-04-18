@@ -18,12 +18,27 @@ const PizzaListTitle = styled.h2`
   letter-spacing: 0.01em;
   margin: 35px 0;
 `;
-const PizzaListGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  row-gap: 65px;
-  column-gap: 55px;
-`;
+
+const PizzaListBlock = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px -20px -30px;
+`
+
+const PizzaListColumn = styled.div`
+  flex: 0 1 25%;
+  padding: 0px 20px;
+  margin: 0px 0px 30px 0px;
+  @media(max-width: 1200px) {
+   flex: 0 1 33.3333%; 
+  }
+  @media(max-width: 920px) {
+    flex: 0 1 50%;
+  }
+  @media(max-width: 620px) {
+    flex: 0 1 100%;
+  }
+`
 
 const PizzaList = () => {
   const [searchParams] = useSearchParams();
@@ -33,9 +48,9 @@ const PizzaList = () => {
   const dispatch = useDispatch<AppDispatchType>();
 
   const getPizzasQueryParams: IGetPizzasQueryParams = {
-    sortBy: searchParams.get('sortBy'),
-    order: searchParams.get('order'),
-    category: searchParams.get('category')
+    sortBy: searchParams.get('sortBy') || "",
+    order: searchParams.get('order') || "",
+    category: searchParams.get('category') || ""
   }
 
   React.useEffect(() => {
@@ -46,13 +61,24 @@ const PizzaList = () => {
     <PizzaListSC>
       <Container>
         <PizzaListTitle>Все пиццы</PizzaListTitle>
-        <PizzaListGrid>
+        {/* <PizzaListGrid>
           {
             pizzasIsLoading
               ? [...new Array(4)].map((_, index) => <PizzaSkeleton key={index} />)
               : pizzas?.map((pizza) => <PizzaItem key={pizza.id} {...pizza} />)
           }
-        </PizzaListGrid>
+        </PizzaListGrid> */}
+        <PizzaListBlock>
+          {
+            pizzasIsLoading
+              ? [...new Array(4)].map((_, index) => <PizzaSkeleton key={index} />)
+              : pizzas?.map((pizza) => (
+                <PizzaListColumn>
+                  <PizzaItem key={pizza.id} {...pizza}/>
+                </PizzaListColumn>
+              ))
+          }
+        </PizzaListBlock>
       </Container>
     </PizzaListSC>
   );

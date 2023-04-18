@@ -10,8 +10,16 @@ const HeaderSC = styled.header`
   padding: 50px 0px 50px 0px;
 `
 
+const HeaderFlex = styled(Flex)`
+  @media(max-width: 576px) {
+    flex-direction: column;
+  }
+`
+
 const HeaderLogoSC = styled(Flex)`
-  
+  @media (max-width: 576px) {
+   margin: 0px 0px 20px 0px; 
+  }
 `
 
 const HeaderLogoImage = styled.img`
@@ -36,6 +44,7 @@ const HeaderLogoSubtitle = styled.div`
   font-size: 16px;
   line-height: calc(20 / 16 * 100%);
   color: #7b7b7b;
+  max-width: 150px;
 `
 
 const HeaderBasket = styled(Flex)`
@@ -72,7 +81,7 @@ const Header = () => {
   return (
     <HeaderSC>
       <Container>
-        <Flex align="center" justify='space-between'>
+        <HeaderFlex align="center" justify='space-between'>
           <Link to="/">
             <HeaderLogoSC align="center">
               <HeaderLogoImage src={Logo} alt="logo" />
@@ -93,7 +102,7 @@ const Header = () => {
               </HeaderBasketCount>
             </HeaderBasket>
           </Link>
-        </Flex>
+        </HeaderFlex>
       </Container>
     </HeaderSC>
   );

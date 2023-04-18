@@ -10,6 +10,15 @@ const CategoriesWrap = styled.ul`
   & > *:not(:last-child) {
     margin: 0px 8px 0px 0px;
   }
+  
+  @media(max-width: 920px) {
+    width: 100%;
+    max-width: 700px;
+    overflow-x: auto;
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+  }
 `;
 
 type FilterItemType = {

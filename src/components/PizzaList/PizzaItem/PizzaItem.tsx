@@ -3,9 +3,14 @@ import styled from "styled-components";
 import { ReactComponent as Icon } from "../../../assets/pizza/plus.svg";
 
 const PizzaItemSC = styled.div`
+  height: 100%;
   max-width: 280px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  @media (max-width: 920px) {
+    margin: 0 auto;
+  }
 `;
 const PizzaItemIblock = styled.div`
   max-width: 259px;
@@ -25,6 +30,7 @@ const PizzaItemTitle = styled.h3`
 `;
 const PizzaKinds = styled.div`
   padding: 7px 5px;
+  width: 100%;
   background: #f3f3f3;
   border-radius: 10px;
   display: flex;
@@ -32,14 +38,19 @@ const PizzaKinds = styled.div`
   gap: 7px;
   margin-bottom: 15px;
 `;
-const PizzaKindsButtonsTop = styled.div`
+
+type CountType = {
+  countType?: number
+}
+
+const PizzaKindsButtonsTop = styled.div<CountType>`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(${props => props.countType}, 1fr);
   gap: 5px;
 `;
-const PizzaKindsButtonsBottom = styled.div`
+const PizzaKindsButtonsBottom = styled.div<CountType>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(${props => props.countType}, 1fr);
   gap: 5px;
 `;
 type PizzaKindsButtonType = {
@@ -63,6 +74,7 @@ const PizzaItemBottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 `;
 const PizzaItemPrice = styled.span`
   display: inline-block;
@@ -124,7 +136,7 @@ const PizzaItem: React.FC<IPizzaItem> = ({
       </PizzaItemIblock>
       <PizzaItemTitle>{title}</PizzaItemTitle>
       <PizzaKinds>
-        <PizzaKindsButtonsTop>
+        <PizzaKindsButtonsTop countType={types.length}>
           {types.map((type, index) => {
             return (
               <PizzaKindsButton
@@ -137,7 +149,7 @@ const PizzaItem: React.FC<IPizzaItem> = ({
             );
           })}
         </PizzaKindsButtonsTop>
-        <PizzaKindsButtonsBottom>
+        <PizzaKindsButtonsBottom countType={sizes.length}>
           {sizes.map((size, index) => {
             return (
               <PizzaKindsButton

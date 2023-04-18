@@ -7,14 +7,21 @@ import Sort from "./sort/Sort";
 
 const FilterWrap = styled.section``;
 
+const FilterFlex = styled(Flex)`
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+`
+
 const Filter = () => {
   return (
     <FilterWrap>
       <Container>
-        <Flex justify="space-between">
+        <FilterFlex justify="space-between">
           <Categories />
           <Sort />
-        </Flex>
+        </FilterFlex>
       </Container>
     </FilterWrap>
   );
