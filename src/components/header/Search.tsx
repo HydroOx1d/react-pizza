@@ -7,11 +7,21 @@ const SearchView = styled.div`
 `
 
 const SearchElement = styled.div`
-  
+  border: 1px solid rgba(0,0,0, .5);
+  width: 300px;
+  height: 35px;
+  border-radius: 5px;
 `
 
 const SearchInput = styled.input`
-
+  padding: 0px 0px 0px 20px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  &:focus {
+    outline: 1px solid rgba(0,0,0, .7);
+  }
 `
 
 const Search = () => {
