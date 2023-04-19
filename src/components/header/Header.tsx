@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Container, Flex } from '../uikit';
 import Logo from '../../assets/header/logo.png';
 import Basket from '../../assets/header/basket.svg';
+import Search from './Search';
 
 const HeaderSC = styled.header`
   padding: 50px 0px 50px 0px;
@@ -93,6 +94,7 @@ const Header = () => {
               </HeaderLogoContent>
             </HeaderLogoSC>
           </Link>
+          <Search/>
           <Link to="/cart">
             <HeaderBasket align='center'>
               <HeaderBasketSum>520 ₽</HeaderBasketSum>

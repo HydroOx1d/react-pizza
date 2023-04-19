@@ -50,12 +50,13 @@ const PizzaList = () => {
   const getPizzasQueryParams: IGetPizzasQueryParams = {
     sortBy: searchParams.get('sortBy') || "",
     order: searchParams.get('order') || "",
-    category: searchParams.get('category') || ""
+    category: searchParams.get('category') || "",
+    title: searchParams.get('title') || ""
   }
 
   React.useEffect(() => {
     dispatch(getPizzas(getPizzasQueryParams))
-  }, [getPizzasQueryParams.sortBy, getPizzasQueryParams.order, getPizzasQueryParams.category])
+  }, [getPizzasQueryParams.sortBy, getPizzasQueryParams.order, getPizzasQueryParams.category, getPizzasQueryParams.title])
 
   return (
     <PizzaListSC>

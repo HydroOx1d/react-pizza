@@ -117,7 +117,8 @@ const Sort = () => {
     setSearchParams({
       sortBy: type, 
       order: type === 'title' ? 'asc' : 'desc',
-      category: searchParams.get('category') || ''
+      category: searchParams.get('category') || '',
+      title: searchParams.get('title') || ''
     })
   }
 

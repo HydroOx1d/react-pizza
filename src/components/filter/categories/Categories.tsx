@@ -60,7 +60,8 @@ const Categories = () => {
     setSearchParams({
       sortBy: searchParams.get('sortBy') || '',
       order: searchParams.get('order') || '',
-      category: String(index || '')
+      category: String(index || ''),
+      title: searchParams.get('title') || ''
     })
   }
 
